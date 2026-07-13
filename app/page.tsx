@@ -5,8 +5,7 @@ import ProjectsFeed from '@/components/ProjectsFeed'
 import HomeScrollSnap from '@/components/HomeScrollSnap'
 import styles from '@/styles/home.module.scss'
 
-// Re-fetch from Sanity at most every 30s in production (ISR)
-export const revalidate = 30
+export const revalidate = false // static; refreshed on-demand via /api/revalidate (Sanity webhook)
 
 export default async function HomePage() {
   const [page, projects, settings] = await Promise.all([

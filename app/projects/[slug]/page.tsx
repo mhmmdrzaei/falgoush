@@ -1,11 +1,16 @@
-import { getProject } from '@/lib/sanity'
+import { getProject, getSlugs } from '@/lib/sanity'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { PortableText } from '@portabletext/react'
 import ImageSlider from '@/components/ImageSlider'
 import styles from '@/styles/project.module.scss'
 
-export const revalidate = 30
+export const revalidate = false // static; refreshed on-demand via /api/revalidate (Sanity webhook)
+
+export async function generateStaticParams() {
+  const slugs = await getSlugs('project')
+  return slugs.map((slug) => ({ slug }))
+}
 
 interface Props {
   params: Promise<{ slug: string }>

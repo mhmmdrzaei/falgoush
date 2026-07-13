@@ -59,3 +59,10 @@ export const getProject = (slug: string) =>
       { slug }
     )
   )
+
+// Slug lists for generateStaticParams — lets Next prerender every page at build
+// so nothing renders per-request (minimizes Vercel CPU / function invocations).
+export const getSlugs = (type: string): Promise<string[]> =>
+  safe(() =>
+    sanityClient.fetch(`*[_type == $type && defined(slug.current)].slug.current`, { type })
+  ).then((res) => res || [])

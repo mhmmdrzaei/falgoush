@@ -2,7 +2,7 @@ import { getShopItems } from '@/lib/sanity'
 import ProductGrid from '@/components/ProductGrid'
 import styles from '@/styles/shop.module.scss'
 
-export const revalidate = 30
+export const revalidate = false // static; refreshed on-demand via /api/revalidate (Sanity webhook)
 
 export default async function ShopPage() {
   const items = await getShopItems()

@@ -2,6 +2,8 @@ import { getStripe } from '@/lib/stripe'
 import { NextRequest, NextResponse } from 'next/server'
 import type Stripe from 'stripe'
 
+export const runtime = 'nodejs'
+
 interface CartItem {
   id: string
   title: string

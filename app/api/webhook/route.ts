@@ -3,6 +3,8 @@ import { Resend } from 'resend'
 import { sanityWriteClient } from '@/lib/sanity'
 import { NextRequest, NextResponse } from 'next/server'
 
+export const runtime = 'nodejs'
+
 export async function POST(req: NextRequest) {
   const stripe = getStripe()
   const body = await req.text()
@@ -40,7 +42,8 @@ export async function POST(req: NextRequest) {
 
     if (!doc) continue
 
-    // Decrement inventory
+    // Decrement inventory in Sanity. The live shop pages refresh on your next
+    // publish (Sanity webhook → /api/revalidate) or git push (Vercel rebuild).
     if (typeof doc.inventory === 'number') {
       await sanityWriteClient
         .patch(meta.id)

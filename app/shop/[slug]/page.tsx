@@ -1,4 +1,4 @@
-import { getShopItem } from '@/lib/sanity'
+import { getShopItem, getSlugs } from '@/lib/sanity'
 import { urlFor } from '@/lib/sanityImage'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -7,7 +7,12 @@ import { PortableText } from '@portabletext/react'
 import AddToCart from '@/components/AddToCart'
 import styles from '@/styles/product.module.scss'
 
-export const revalidate = 30
+export const revalidate = false // static; refreshed on-demand via /api/revalidate (Sanity webhook)
+
+export async function generateStaticParams() {
+  const slugs = await getSlugs('shopItem')
+  return slugs.map((slug) => ({ slug }))
+}
 
 interface Props {
   params: Promise<{ slug: string }>
