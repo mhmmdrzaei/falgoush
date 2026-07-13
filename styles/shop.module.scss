@@ -1,0 +1,40 @@
+@use 'variables' as *;
+
+.shopPage {
+  max-width: $content-max;
+  margin: 0 auto;
+  padding: calc(#{$nav-height} + 3rem) $content-pad 5rem;
+}
+
+.heading {
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.5;
+  margin-bottom: 2.5rem;
+}
+
+.successPage {
+  max-width: 36rem;
+  margin: 0 auto;
+  padding: calc(#{$nav-height} + 5rem) $content-pad 5rem;
+  text-align: center;
+
+  h1 {
+    font-size: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  p {
+    opacity: 0.7;
+    margin-bottom: 2rem;
+  }
+
+  a {
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 0.1em;
+  }
+}

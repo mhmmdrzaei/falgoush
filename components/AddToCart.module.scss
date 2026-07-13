@@ -1,0 +1,54 @@
+@use '../styles/variables' as *;
+
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.qty {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  font-family: $font-sans;
+  font-size: 0.9rem;
+
+  button {
+    background: none;
+    border: 1px solid $color-border;
+    color: $color-text;
+    width: 2em;
+    height: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.2s;
+
+    &:hover { border-color: $color-text; }
+  }
+
+  span { min-width: 1.5em; text-align: center; }
+}
+
+.btn {
+  background: none;
+  border: 1px solid $color-text;
+  color: $color-text;
+  padding: 0.85em 2.25em;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-family: $font-sans;
+  transition: background 0.2s, color 0.2s;
+
+  &:hover:not(:disabled) {
+    background: $color-text;
+    color: $color-bg;
+  }
+
+  &:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+  }
+}

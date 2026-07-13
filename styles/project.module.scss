@@ -1,0 +1,62 @@
+@use 'variables' as *;
+
+.projectPage {
+  max-width: $content-max;
+  margin: 0 auto;
+  padding: calc(#{$nav-height} + 2rem) $content-pad 6rem;
+}
+
+.slider {
+  margin-bottom: 3rem;
+}
+
+.content {
+  max-width: 40rem;
+  margin: 0 auto;
+}
+
+.header {
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+
+.title {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  letter-spacing: 0.03em;
+  margin-bottom: 0.4rem;
+}
+
+.year {
+  font-size: 0.85rem;
+  opacity: 0.5;
+  font-family: $font-sans;
+  letter-spacing: 0.1em;
+}
+
+.body {
+  max-width: 40rem;
+  margin-bottom: 2.5rem;
+  line-height: 1.8;
+  opacity: 0.85;
+
+  p { margin-bottom: 1em; }
+  a { border-bottom: 1px solid currentColor; }
+}
+
+.shopButton {
+  display: inline-block;
+  border: 1px solid $color-text;
+  color: $color-text;
+  padding: 0.85em 2.25em;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-family: $font-sans;
+  transition: background 0.2s, color 0.2s;
+  margin-bottom: 4rem;
+
+  &:hover {
+    background: $color-text;
+    color: $color-bg;
+  }
+}

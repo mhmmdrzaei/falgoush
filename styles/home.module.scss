@@ -1,0 +1,39 @@
+@use 'variables' as *;
+
+.hero {
+  position: relative;
+  width: 100%;
+  // Clear the fixed nav; the image sets the height
+  margin-top: $nav-height;
+  scroll-snap-align: start;
+}
+
+.heroImg {
+  display: block;
+  width: 100%;
+  // Fill the area below the nav on desktop (contained, centered)
+  height: calc(100dvh - #{$nav-height});
+  object-fit: contain;
+
+  // On mobile, height follows the image — no extra white space
+  @media (max-width: $bp-md) {
+    height: auto;
+  }
+}
+
+.heroTitle {
+  // Centered overlay on top of the image
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $color-text;
+  font-size: clamp(1.5rem, 12vw, 4rem);
+  letter-spacing: 0.15em;
+  text-transform: lowercase;
+  text-align: center;
+  font-weight: 400;
+  padding: 0 $content-pad;
+}

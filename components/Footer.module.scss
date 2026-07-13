@@ -1,0 +1,30 @@
+@use '../styles/variables' as *;
+
+.footer {
+  padding: 1rem $content-pad;
+  border-top: 1px solid $color-border;
+  text-align: center;
+}
+
+.social {
+  display: flex;
+  justify-content: center;
+  gap: 1.5em;
+  margin-bottom: 1.25rem;
+
+  a {
+    opacity: 0.5;
+    transition: opacity 0.15s;
+    display: flex;
+    align-items: center;
+
+    &:hover { opacity: 1; }
+  }
+}
+
+.copy {
+  font-size: 0.7rem;
+  opacity: 0.3;
+  letter-spacing: 0.1em;
+  font-family: $font-sans;
+}

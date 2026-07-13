@@ -1,0 +1,23 @@
+@use '../styles/variables' as *;
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem 1.5rem;
+
+  @media (min-width: $bp-lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: 30em) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.empty {
+  opacity: 0.45;
+  text-align: center;
+  padding: 5rem 0;
+  font-family: $font-sans;
+  font-size: 0.9rem;
+}

@@ -1,0 +1,36 @@
+@use 'variables' as *;
+
+.page {
+  position: relative;
+  min-height: 100dvh;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  padding-top: $nav-height;
+  display: flex;
+  align-items: center;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  // Light wash so black text stays readable over the background image
+  background: rgba($color-bg, 0.6);
+  pointer-events: none;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 50rem;
+  margin: 0 auto;
+  padding: 4rem $content-pad;
+
+  // Larger, more comfortable reading size on desktop
+  @media (min-width: $bp-md) {
+    font-size: 1.25rem;
+    line-height: 1.8;
+    padding: 6rem $content-pad;
+  }
+}

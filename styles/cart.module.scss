@@ -1,0 +1,120 @@
+@use 'variables' as *;
+
+.cartPage {
+  max-width: 48rem;
+  margin: 0 auto;
+  padding: calc(#{$nav-height} + 3rem) $content-pad 5rem;
+
+  h1 {
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.5;
+    margin-bottom: 2.5rem;
+  }
+}
+
+.empty {
+  opacity: 0.5;
+  text-align: center;
+  padding: 5rem 0;
+
+  a { border-bottom: 1px solid currentColor; }
+}
+
+.itemList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid $color-border;
+}
+
+.itemInfo {
+  flex: 1;
+}
+
+.itemTitle {
+  font-size: 0.9rem;
+  margin-bottom: 0.25em;
+}
+
+.itemPrice {
+  font-size: 0.85rem;
+  opacity: 0.55;
+}
+
+.qtyControls {
+  display: flex;
+  align-items: center;
+  gap: 0.75em;
+  font-size: 0.9rem;
+
+  button {
+    background: none;
+    border: 1px solid $color-border;
+    color: $color-text;
+    width: 1.8em;
+    height: 1.8em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.2s;
+
+    &:hover { border-color: $color-text; }
+  }
+}
+
+.remove {
+  background: none;
+  border: none;
+  color: $color-muted;
+  font-size: 0.75rem;
+  text-decoration: underline;
+  padding: 0;
+
+  &:hover { color: $color-text; }
+}
+
+.summary {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.4rem;
+
+  p {
+    font-size: 0.9rem;
+    opacity: 0.65;
+  }
+}
+
+.total {
+  font-size: 1rem !important;
+  opacity: 1 !important;
+  margin-top: 0.4rem;
+}
+
+.checkoutBtn {
+  margin-top: 1.5rem;
+  background: none;
+  border: 1px solid $color-text;
+  color: $color-text;
+  padding: 0.85em 2.5em;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: background 0.2s, color 0.2s;
+
+  &:hover {
+    background: $color-text;
+    color: $color-bg;
+  }
+}
