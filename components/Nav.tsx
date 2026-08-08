@@ -30,6 +30,7 @@ export default function Nav({ settings }: { settings: SiteSettings }) {
   const closeMenu = () => setMenuOpen(false)
 
   return (
+    <>
     <nav className={styles.nav}>
       <div className={styles.inner}>
         <Link href="/" className={styles.logo} onClick={closeMenu}>
@@ -74,20 +75,22 @@ export default function Nav({ settings }: { settings: SiteSettings }) {
           </button>
         </div>
       </div>
-
-      {/* Mobile full-screen menu */}
-      <div className={`${styles.mobileMenu} ${menuOpen ? styles.open : ''}`}>
-        <ul>
-          {settings.navLinks?.map((link) => (
-            <li key={link.href}>
-              <Link href={link.href} onClick={closeMenu}>
-                {link.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
     </nav>
+
+    {/* Mobile full-screen menu — kept OUTSIDE <nav> so the nav's backdrop-filter
+        doesn't become the containing block for this position:fixed panel */}
+    <div className={`${styles.mobileMenu} ${menuOpen ? styles.open : ''}`}>
+      <ul>
+        {settings.navLinks?.map((link) => (
+          <li key={link.href}>
+            <Link href={link.href} onClick={closeMenu}>
+              {link.label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+    </>
   )
 }
 
