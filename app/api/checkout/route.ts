@@ -84,7 +84,12 @@ export async function POST(req: NextRequest) {
   }
 
   const stripe = getStripe()
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
+  // Use the origin of the actual request so success/cancel URLs always point at
+  // the domain the customer is on (localhost in dev, the live domain in prod).
+  const baseUrl =
+    req.headers.get('origin') ||
+    process.env.NEXT_PUBLIC_BASE_URL ||
+    req.nextUrl.origin
 
   try {
     const session = await stripe.checkout.sessions.create({
