@@ -7,7 +7,9 @@ import { PortableText } from '@portabletext/react'
 import AddToCart from '@/components/AddToCart'
 import styles from '@/styles/product.module.scss'
 
-export const revalidate = false // static; refreshed on-demand via /api/revalidate (Sanity webhook)
+// Fully static: built once per deploy, no runtime revalidation or on-demand rendering.
+// Content refreshes only on a new build (git push or Vercel Deploy Hook).
+export const dynamicParams = false
 
 export async function generateStaticParams() {
   const slugs = await getSlugs('shopItem')

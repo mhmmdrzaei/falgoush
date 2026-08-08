@@ -4,7 +4,8 @@ import PageBlocks from '@/components/PageBlocks'
 import { notFound } from 'next/navigation'
 import styles from '@/styles/page.module.scss'
 
-export const revalidate = false // static; refreshed on-demand via /api/revalidate (Sanity webhook)
+// Fully static: built once per deploy, refreshed only on a new build.
+export const dynamicParams = false
 
 export async function generateStaticParams() {
   const slugs = await getSlugs('page')
