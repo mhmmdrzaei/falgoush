@@ -16,7 +16,6 @@ export default function AddToCart({ item, soldOut }: { item: any; soldOut: boole
       title: item.title,
       price: item.price,
       quantity: qty,
-      stripePriceId: item.stripePriceId,
       productType: item.productType,
       shippingCost: item.shippingCost,
       image: item.images?.[0] ? urlFor(item.images[0]).width(200).height(200).url() : undefined,

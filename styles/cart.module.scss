@@ -117,4 +117,17 @@
     background: $color-text;
     color: $color-bg;
   }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
+}
+
+.error {
+  color: #c0392b;
+  font-size: 0.85rem;
+  max-width: 22rem;
+  text-align: right;
+  margin-top: 0.5rem;
 }

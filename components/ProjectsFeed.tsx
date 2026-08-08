@@ -58,7 +58,7 @@ export default function ProjectsFeed({ projects }: { projects: any[] }) {
   if (!projects?.length) return null
 
   return (
-    <section className={styles.feed}>
+    <section className={styles.feed} id="projects">
       {projects.map((project) => (
         <ProjectRow key={project._id} project={project} />
       ))}

@@ -31,7 +31,7 @@ export default async function HomePage() {
             priority
           />
         )}
-        <h1 className={styles.heroTitle}>{siteName}</h1>
+        {/* <h1 className={styles.heroTitle}>{siteName}</h1> */}
       </section>
 
       <ProjectsFeed projects={projects || []} />

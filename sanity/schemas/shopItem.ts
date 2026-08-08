@@ -48,12 +48,6 @@ export const shopItem = defineType({
       description: 'Number of items in stock. Leave empty for unlimited.',
     }),
     defineField({
-      name: 'stripePriceId',
-      title: 'Stripe Price ID',
-      type: 'string',
-      description: 'From Stripe dashboard — e.g. price_1abc...',
-    }),
-    defineField({
       name: 'shippingCost',
       title: 'Shipping Cost Per Item (USD)',
       type: 'number',
