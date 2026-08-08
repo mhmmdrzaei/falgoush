@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { urlFor } from '@/lib/sanityImage'
 import { useCart } from './CartProvider'
 import styles from './Nav.module.scss'
@@ -19,10 +19,20 @@ export default function Nav({ settings }: { settings: SiteSettings }) {
   const [menuOpen, setMenuOpen] = useState(false)
   const { totalItems } = useCart()
 
+  // Lock body scroll while the mobile menu is open
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : ''
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [menuOpen])
+
+  const closeMenu = () => setMenuOpen(false)
+
   return (
     <nav className={styles.nav}>
       <div className={styles.inner}>
-        <Link href="/" className={styles.logo} onClick={() => setMenuOpen(false)}>
+        <Link href="/" className={styles.logo} onClick={closeMenu}>
           {settings.logo ? (
             <Image
               className={styles.logoImg}
@@ -37,32 +47,45 @@ export default function Nav({ settings }: { settings: SiteSettings }) {
           )}
         </Link>
 
-        <ul className={`${styles.links} ${menuOpen ? styles.open : ''}`}>
+        <div className={styles.actions}>
+          <Link href="/cart" className={styles.cartIcon} aria-label="Cart" onClick={closeMenu}>
+            <CartSvg />
+            {totalItems > 0 && <span className={styles.cartCount}>{totalItems}</span>}
+          </Link>
+
+          {/* Desktop links */}
+          <ul className={styles.desktopLinks}>
+            {settings.navLinks?.map((link) => (
+              <li key={link.href}>
+                <Link href={link.href}>{link.label}</Link>
+              </li>
+            ))}
+          </ul>
+
+          <button
+            className={styles.menuToggle}
+            onClick={() => setMenuOpen((v) => !v)}
+            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={menuOpen}
+          >
+            <span className={`${styles.bar} ${menuOpen ? styles.barTop : ''}`} />
+            <span className={`${styles.bar} ${menuOpen ? styles.barMid : ''}`} />
+            <span className={`${styles.bar} ${menuOpen ? styles.barBot : ''}`} />
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile full-screen menu */}
+      <div className={`${styles.mobileMenu} ${menuOpen ? styles.open : ''}`}>
+        <ul>
           {settings.navLinks?.map((link) => (
             <li key={link.href}>
-              <Link href={link.href} onClick={() => setMenuOpen(false)}>
+              <Link href={link.href} onClick={closeMenu}>
                 {link.label}
               </Link>
             </li>
           ))}
         </ul>
-
-        <div className={styles.actions}>
-          <Link href="/cart" className={styles.cartIcon} aria-label="Cart">
-            <CartSvg />
-            {totalItems > 0 && (
-              <span className={styles.cartCount}>{totalItems}</span>
-            )}
-          </Link>
-          <button
-            className={styles.menuToggle}
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-            aria-expanded={menuOpen}
-          >
-            {menuOpen ? '✕' : '☰'}
-          </button>
-        </div>
       </div>
     </nav>
   )

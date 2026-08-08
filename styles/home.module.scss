@@ -11,14 +11,9 @@
 .heroImg {
   display: block;
   width: 100%;
-  // Fill the area below the nav on desktop (contained, centered)
+  // Fill the area below the nav (contained + centered = space above and below the image)
   height: calc(100dvh - #{$nav-height});
   object-fit: contain;
-
-  // On mobile, height follows the image — no extra white space
-  @media (max-width: $bp-md) {
-    height: auto;
-  }
 }
 
 .heroTitle {

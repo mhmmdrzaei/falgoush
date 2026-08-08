@@ -28,6 +28,7 @@
   font-size: 1rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+  z-index: 2; // stay above the mobile menu panel
 }
 
 .logoImg {
@@ -36,44 +37,11 @@
   object-fit: contain;
 }
 
-.links {
-  display: flex;
-  gap: 2.5em;
-  list-style: none;
-
-  a {
-    font-size: 0.8rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    opacity: 0.7;
-    transition: opacity 0.15s;
-
-    &:hover { opacity: 1; }
-  }
-
-  @media (max-width: $bp-md) {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: $color-bg;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 2.5rem;
-    z-index: 99;
-
-    a { font-size: 1.1rem; opacity: 1; }
-
-    &.open { display: flex; }
-  }
-}
-
 .actions {
   display: flex;
   align-items: center;
-  gap: 1.25em;
-  position: relative;
-  z-index: 101;
+  gap: 1.5em;
+  z-index: 2;
 }
 
 .cartIcon {
@@ -89,7 +57,7 @@
   position: absolute;
   top: -0.45em;
   right: -0.6em;
-  background: $color-accent;
+  background: $color-text;
   color: $color-bg;
   font-size: 0.6rem;
   width: 1.3em;
@@ -101,16 +69,108 @@
   font-family: $font-sans;
 }
 
+/* Desktop links (inline in the bar) */
+.desktopLinks {
+  display: flex;
+  gap: 2.5em;
+  list-style: none;
+
+  a {
+    font-size: 0.8rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    transition: opacity 0.15s;
+    &:hover { opacity: 1; }
+  }
+
+  @media (max-width: $bp-md) {
+    display: none;
+  }
+}
+
+/* Hamburger button — hidden on desktop */
 .menuToggle {
   display: none;
+  position: relative;
+  width: 1.5rem;
+  height: 1.1rem;
   background: none;
   border: none;
-  color: $color-text;
-  font-size: 1.1rem;
-  padding: 0.25em;
-  line-height: 1;
+  padding: 0;
 
   @media (max-width: $bp-md) {
     display: block;
+  }
+}
+
+.bar {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 1.5px;
+  background: $color-text;
+  transition: transform 0.3s ease, opacity 0.2s ease;
+
+  &:nth-child(1) { top: 0; }
+  &:nth-child(2) { top: 50%; transform: translateY(-50%); }
+  &:nth-child(3) { bottom: 0; }
+}
+
+.barTop {
+  top: 50% !important;
+  transform: translateY(-50%) rotate(45deg);
+}
+.barMid {
+  opacity: 0;
+}
+.barBot {
+  bottom: auto !important;
+  top: 50%;
+  transform: translateY(-50%) rotate(-45deg);
+}
+
+/* Mobile full-screen menu panel (below the bar) */
+.mobileMenu {
+  display: none;
+
+  @media (max-width: $bp-md) {
+    display: block;
+    position: fixed;
+    top: $nav-height;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    background: $color-bg;
+
+    // Hidden by default: faded + not interactive
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-0.5rem);
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+
+    ul {
+      list-style: none;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+    }
+
+    a {
+      font-size: 1rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      opacity: 0.7;
+    }
+
+    &.open {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
   }
 }
